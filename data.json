@@ -1,0 +1,63 @@
+{
+  "profile": {
+    "name": "Miftah Fadhlih",
+    "title": "Product Manager | Project Manager | AI Engineer",
+    "summary": "I am a versatile professional with experience in product management, project management, and AI engineering.",
+    "location": "Rawalumbu, Bekasi, Indonesia",
+    "email": "miftahfadlih8@gmail.com",
+    "phone": "+6287778088578",
+    "photo": "https://picsum.photos/seed/miftah/800/800",
+    "social": {
+      "linkedin": "https://linkedin.com/in/miftahfadhlih",
+      "github": "https://github.com/miftahfadhlih",
+      "telegram": "https://t.me/miftahfadhlih"
+    }
+  },
+  "experiences": [
+    {
+      "id": "1",
+      "company": "PT Indo Fin Tek",
+      "role": "Product Manager",
+      "startDate": "2022-01",
+      "endDate": "2024-12",
+      "current": false,
+      "description": ["Led product development", "Managed agile teams"],
+      "achievements": ["+30% engagement", "-30% backlog"]
+    }
+  ],
+  "projects": [
+    {
+      "id": "1",
+      "name": "QB POS",
+      "role": "AI Engineer & Full-Stack Dev",
+      "description": "Led the development of an Enterprise POS system integrated with AI capabilities, streamlining inventory management and increasing sales tracking efficiency across multiple retail outlets.",
+      "techStack": ["React", "Node.js", "AI"],
+      "thumbnail": "https://picsum.photos/seed/qbpos/800/600",
+      "liveUrl": "https://example.com",
+      "githubUrl": "https://github.com",
+      "featured": true
+    }
+  ],
+  "stats": {
+    "activeUsers": 40,
+    "revenueGrowth": 25,
+    "userEngagement": 20,
+    "backlogReduction": 30,
+    "usabilityScore": 35
+  },
+  "skills": [
+    {
+      "category": "Product Management",
+      "items": [
+        {"name": "Product Strategy", "level": 95},
+        {"name": "Agile/Scrum", "level": 90}
+      ]
+    }
+  ],
+  "messages": [],
+  "settings": {
+    "siteTitle": "Miftah Fadhlih - Portfolio",
+    "metaDescription": "Portfolio of Miftah Fadhlih",
+    "primaryColor": "#3b82f6"
+  }
+}
