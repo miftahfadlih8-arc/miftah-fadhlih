@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
-import { Save, Loader2, Settings, Globe, Bell } from "lucide-react";
+import { Save, Loader2, Settings, Globe, Bell, Send } from "lucide-react";
 
 const settingsSchema = z.object({
   seoTitle: z.string().min(1, "SEO Title is required"),
@@ -12,6 +12,7 @@ const settingsSchema = z.object({
   gaId: z.string().optional(),
   telegramBotToken: z.string().optional(),
   telegramChatId: z.string().optional(),
+  geminiApiKey: z.string().optional(),
 });
 
 type SettingsData = z.infer<typeof settingsSchema>;
@@ -19,6 +20,7 @@ type SettingsData = z.infer<typeof settingsSchema>;
 export default function SettingsPage() {
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
+  const [settingWebhook, setSettingWebhook] = useState(false);
   const [message, setMessage] = useState({ type: "", text: "" });
 
   const {
@@ -42,6 +44,7 @@ export default function SettingsPage() {
             gaId: "",
             telegramBotToken: "",
             telegramChatId: "",
+            geminiApiKey: "",
           },
         );
         setLoading(false);
@@ -72,6 +75,24 @@ export default function SettingsPage() {
       setMessage({ type: "error", text: "An error occurred." });
     } finally {
       setSaving(false);
+    }
+  };
+
+  const setWebhook = async () => {
+    setSettingWebhook(true);
+    setMessage({ type: "", text: "" });
+    try {
+      const res = await fetch("/api/telegram/setup", { method: "POST" });
+      const data = await res.json();
+      if (data.success) {
+        setMessage({ type: "success", text: "Telegram Webhook set successfully!" });
+      } else {
+        setMessage({ type: "error", text: data.error || "Failed to set webhook." });
+      }
+    } catch (error) {
+      setMessage({ type: "error", text: "An error occurred while setting webhook." });
+    } finally {
+      setSettingWebhook(false);
     }
   };
 
@@ -193,6 +214,36 @@ export default function SettingsPage() {
                 placeholder="-1001234567890"
                 className="w-full px-4 py-2 bg-slate-900 border border-slate-700 rounded-lg text-white focus:ring-2 focus:ring-blue-500"
               />
+            </div>
+            <div className="space-y-2">
+              <label className="text-sm font-medium text-slate-300">
+                Gemini API Key (Optional)
+              </label>
+              <input
+                {...register("geminiApiKey")}
+                type="password"
+                placeholder="AIzaSy..."
+                className="w-full px-4 py-2 bg-slate-900 border border-slate-700 rounded-lg text-white focus:ring-2 focus:ring-blue-500"
+              />
+            </div>
+            <div className="pt-4">
+              <button
+                type="button"
+                onClick={setWebhook}
+                disabled={settingWebhook}
+                className="flex items-center gap-2 px-4 py-2 bg-slate-700 hover:bg-slate-600 text-white rounded-lg text-sm font-medium transition-colors disabled:opacity-50"
+              >
+                {settingWebhook ? (
+                  <Loader2 className="w-4 h-4 animate-spin" />
+                ) : (
+                  <Send className="w-4 h-4" />
+                )}
+                Set Telegram Webhook
+              </button>
+              <p className="mt-2 text-xs text-slate-500">
+                Click this after saving your Bot Token to connect the bot to
+                this website.
+              </p>
             </div>
           </div>
         </div>

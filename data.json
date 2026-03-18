@@ -2,11 +2,11 @@
   "profile": {
     "name": "Miftah Fadhlih",
     "title": "Product Manager | Project Manager | AI Engineer",
-    "summary": "I am a versatile professional with experience in product management, project management, and AI engineering.",
+    "summary": "Product Manager with 4+ years Fintech experience, including 1 year UX Research and 3 years leading product development. Track record: +30% user engagement, +25% revenue, 10,000+ app downloads in first month. Currently expanding as AI Engineer, developing AI-powered solutions using Google AI Studio and modern web technologies. Expert in Agile methodologies, cross-functional leadership, and data-driven decision making.",
     "location": "Rawalumbu, Bekasi, Indonesia",
     "email": "miftahfadlih8@gmail.com",
     "phone": "+6287778088578",
-    "photo": "https://picsum.photos/seed/miftah/800/800",
+    "photo": "/foto miftah-1773789231004-82372544.jpg",
     "social": {
       "linkedin": "https://linkedin.com/in/miftahfadhlih",
       "github": "https://github.com/miftahfadhlih",
@@ -16,24 +16,99 @@
   "experiences": [
     {
       "id": "1",
-      "company": "PT Indo Fin Tek",
+      "company": "Freelance / Personal Projects",
+      "role": "AI Engineer",
+      "startDate": "2025-01",
+      "endDate": "Present",
+      "current": true,
+      "description": [
+        "Developing AI-powered web applications using Google AI Studio and modern LLM technologies",
+        "Building and deploying ML models for practical business applications and process automation"
+      ],
+      "achievements": []
+    },
+    {
+      "id": "2",
+      "company": "PT Indo Fin Tek (Dompet Kilat)",
       "role": "Product Manager",
       "startDate": "2022-01",
       "endDate": "2024-12",
       "current": false,
-      "description": ["Led product development", "Managed agile teams"],
-      "achievements": ["+30% engagement", "-30% backlog"]
+      "description": [
+        "Led end-to-end product development, achieving +30% user engagement through data-driven optimization",
+        "Defined and executed product roadmap with engineering, design, and business teams",
+        "Implemented Agile/Scrum workflows, improving sprint efficiency and reducing backlog by 30%",
+        "Managed stakeholder communications and presented product updates to executive leadership"
+      ],
+      "achievements": [
+        "+30% user engagement",
+        "30% backlog reduction"
+      ]
+    },
+    {
+      "id": "3",
+      "company": "PT Indo Fin Tek (Dompet Kilat)",
+      "role": "UX Researcher",
+      "startDate": "2021-01",
+      "endDate": "2021-12",
+      "current": false,
+      "description": [
+        "Created high-fidelity designs and prototypes using Figma, reducing dev iteration cycles by 25%",
+        "Designed UIs that improved usability scores by 35% while maintaining brand consistency",
+        "Conducted user research (interviews, surveys, usability testing) to influence product design"
+      ],
+      "achievements": [
+        "25% dev iteration reduction",
+        "35% usability score improvement"
+      ]
+    },
+    {
+      "id": "4",
+      "company": "PT Asia Pelangi Remiten (Action Pay)",
+      "role": "Product Manager (Project-Based)",
+      "startDate": "2022",
+      "endDate": "2023",
+      "current": false,
+      "description": [
+        "Led development and launch of remittance app, achieving 10,000+ downloads in first month",
+        "Designed and tested prototypes, launching improved UI that reduced user drop-off by 25%"
+      ],
+      "achievements": [
+        "10,000+ downloads in first month",
+        "25% user drop-off reduction"
+      ]
     }
   ],
   "projects": [
     {
       "id": "1",
       "name": "QB POS",
-      "role": "AI Engineer & Full-Stack Dev",
-      "description": "Led the development of an Enterprise POS system integrated with AI capabilities, streamlining inventory management and increasing sales tracking efficiency across multiple retail outlets.",
-      "techStack": ["React", "Node.js", "AI"],
+      "role": "AI Engineer & Full-Stack Developer",
+      "description": "Comprehensive POS system with sales tracking, inventory management, and multi-outlet support.",
+      "techStack": [
+        "React",
+        "Node.js",
+        "AI",
+        "PostgreSQL"
+      ],
       "thumbnail": "https://picsum.photos/seed/qbpos/800/600",
-      "liveUrl": "https://example.com",
+      "liveUrl": "https://www.pos234.biz.id",
+      "githubUrl": "https://github.com",
+      "featured": true
+    },
+    {
+      "id": "2",
+      "name": "AI-Powered Web Applications",
+      "role": "AI Engineer",
+      "description": "Intelligent applications using Google AI Studio for enhanced UX and business automation.",
+      "techStack": [
+        "Google AI Studio",
+        "LLM",
+        "Next.js",
+        "Tailwind CSS"
+      ],
+      "thumbnail": "https://picsum.photos/seed/aiweb/800/600",
+      "liveUrl": "https://anakhebad26-stack-s-org-git-main-anakhebad-stores-projects.vercel.app",
       "githubUrl": "https://github.com",
       "featured": true
     }
@@ -41,7 +116,7 @@
   "stats": {
     "activeUsers": 40,
     "revenueGrowth": 25,
-    "userEngagement": 20,
+    "userEngagement": 30,
     "backlogReduction": 30,
     "usabilityScore": 35
   },
@@ -49,15 +124,55 @@
     {
       "category": "Product Management",
       "items": [
-        {"name": "Product Strategy", "level": 95},
-        {"name": "Agile/Scrum", "level": 90}
+        { "name": "Product Strategy", "level": 95 },
+        { "name": "Roadmap Development", "level": 90 },
+        { "name": "Backlog Prioritization", "level": 90 },
+        { "name": "A/B Testing", "level": 85 },
+        { "name": "Stakeholder Management", "level": 90 }
+      ]
+    },
+    {
+      "category": "Agile & Methodologies",
+      "items": [
+        { "name": "Scrum", "level": 95 },
+        { "name": "Kanban", "level": 90 },
+        { "name": "Sprint Planning", "level": 90 }
+      ]
+    },
+    {
+      "category": "AI & Technology",
+      "items": [
+        { "name": "Google AI Studio", "level": 90 },
+        { "name": "Prompt Engineering", "level": 95 },
+        { "name": "LLM Implementation", "level": 85 },
+        { "name": "AI Integration", "level": 85 }
+      ]
+    },
+    {
+      "category": "Design & Analytics",
+      "items": [
+        { "name": "Figma", "level": 85 },
+        { "name": "User Research", "level": 90 },
+        { "name": "Data Analysis", "level": 80 }
       ]
     }
   ],
-  "messages": [],
+  "messages": [
+    {
+      "id": "1773790340472",
+      "name": "JKN",
+      "email": "miftahfadlih8@gmail.com",
+      "subject": "SDKFNS",
+      "message": "SKNFKLSD",
+      "date": "2026-03-17T23:32:20.472Z"
+    }
+  ],
   "settings": {
     "siteTitle": "Miftah Fadhlih - Portfolio",
     "metaDescription": "Portfolio of Miftah Fadhlih",
-    "primaryColor": "#3b82f6"
+    "primaryColor": "#3b82f6",
+    "telegramBotToken": "",
+    "telegramChatId": "",
+    "geminiApiKey": "AIzaSyAmtPhH0MmKid5jguNJ4rB4c0NX1gD6Dh8"
   }
 }

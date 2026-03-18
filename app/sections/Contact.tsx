@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "motion/react";
-import { Send, Mail, MapPin, Phone, CheckCircle2, Loader2 } from "lucide-react";
+import { Send, Mail, MapPin, Phone, CheckCircle2, Loader2, Linkedin, Github } from "lucide-react";
 
 export default function Contact({ profile }: { profile?: any }) {
   const [formData, setFormData] = useState({
@@ -16,8 +16,10 @@ export default function Contact({ profile }: { profile?: any }) {
   >("idle");
 
   const email = profile?.email || "miftahfadlih8@gmail.com";
-  const phone = profile?.phone || "(+62) 877-7808-8578";
+  const phone = profile?.phone || "+6287778088578";
   const location = profile?.location || "Rawalumbu, Bekasi, Indonesia";
+  const linkedin = profile?.social?.linkedin || "https://linkedin.com/in/miftahfadhlih";
+  const github = profile?.social?.github || "https://github.com/miftahfadhlih";
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -113,6 +115,44 @@ export default function Contact({ profile }: { profile?: any }) {
                     <p className="text-lg font-medium text-white">{location}</p>
                   </div>
                 </div>
+
+                {linkedin && (
+                  <div className="flex items-start gap-4">
+                    <div className="p-3 rounded-xl bg-blue-600/10 text-blue-500 shrink-0">
+                      <Linkedin className="w-6 h-6" />
+                    </div>
+                    <div>
+                      <p className="text-sm text-slate-400 mb-1">LinkedIn</p>
+                      <a
+                        href={linkedin}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-lg font-medium text-white hover:text-blue-500 transition-colors"
+                      >
+                        Miftah Fadhlih
+                      </a>
+                    </div>
+                  </div>
+                )}
+
+                {github && (
+                  <div className="flex items-start gap-4">
+                    <div className="p-3 rounded-xl bg-slate-400/10 text-slate-300 shrink-0">
+                      <Github className="w-6 h-6" />
+                    </div>
+                    <div>
+                      <p className="text-sm text-slate-400 mb-1">GitHub</p>
+                      <a
+                        href={github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-lg font-medium text-white hover:text-slate-300 transition-colors"
+                      >
+                        miftahfadhlih
+                      </a>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           </motion.div>

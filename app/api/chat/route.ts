@@ -2,8 +2,7 @@ import { NextResponse } from "next/server";
 import { GoogleGenAI } from "@google/genai";
 import { MIFTAH_CV_PROMPT } from "@/app/lib/ai-agent";
 import { sendTelegramMessage } from "@/app/lib/telegram";
-
-const ai = new GoogleGenAI({ apiKey: process.env.NEXT_PUBLIC_GEMINI_API_KEY });
+import { readData } from "@/app/lib/data";
 
 export async function POST(req: Request) {
   try {
@@ -16,26 +15,21 @@ export async function POST(req: Request) {
       );
     }
 
-    // Format history for Gemini
-    const history = messages.slice(0, -1).map((msg: any) => ({
-      role: msg.role === "user" ? "user" : "model",
-      parts: [{ text: msg.content }],
-    }));
+    // Get API Key from data.json or environment
+    const data = await readData();
+    const geminiKey = data.settings?.geminiApiKey || process.env.NEXT_PUBLIC_GEMINI_API_KEY;
+
+    if (!geminiKey) {
+      console.error("Gemini API Key not configured.");
+      return NextResponse.json(
+        { error: "AI Assistant is currently unavailable. Please configure the API Key." },
+        { status: 500 },
+      );
+    }
+
+    const ai = new GoogleGenAI({ apiKey: geminiKey });
 
     const currentMessage = messages[messages.length - 1].content;
-
-    // Initialize chat
-    const chat = ai.chats.create({
-      model: "gemini-3-flash-preview",
-      config: {
-        systemInstruction: MIFTAH_CV_PROMPT,
-        temperature: 0.7,
-      },
-    });
-
-    // We can't easily set history with the current SDK's chat.create,
-    // so we'll just send the whole conversation as a single prompt if needed,
-    // or use generateContent. Let's use generateContent for simplicity and full control.
 
     const formattedContents = [
       {
@@ -61,8 +55,6 @@ export async function POST(req: Request) {
       response.text || "I'm sorry, I couldn't process that request.";
 
     // Optionally notify Miftah via Telegram about the chat
-    // We can debounce this or only send if it's a specific intent (like scheduling)
-    // For now, let's just send a summary if the user asks to contact Miftah
     if (
       currentMessage.toLowerCase().includes("contact") ||
       currentMessage.toLowerCase().includes("meeting") ||

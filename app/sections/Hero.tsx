@@ -10,8 +10,8 @@ export default function Hero({ profile }: { profile?: any }) {
     profile?.title || "Product Manager | Project Manager | AI Engineer";
   const location = profile?.location || "Rawalumbu, Bekasi, Indonesia";
   const email = profile?.email || "miftahfadlih8@gmail.com";
-  const phone = profile?.phone || "(+62)877-7808-8578";
-  const photo = profile?.photo || "https://picsum.photos/seed/miftah/800/800";
+  const phone = profile?.phone || "+6287778088578";
+  const photo = profile?.photo || "/foto miftah-1773789231004-82372544.jpg";
   const linkedin = profile?.social?.linkedin || "https://linkedin.com/in/miftahfadhlih";
   const github = profile?.social?.github || "https://github.com/miftahfadhlih";
   const pitch = profile?.pitch || "Bridging the gap between business strategy and AI technology to build scalable, user-centric products that drive measurable impact.";
@@ -117,13 +117,13 @@ export default function Hero({ profile }: { profile?: any }) {
             <div className="absolute inset-0 rounded-full border border-slate-700/50 animate-[spin_20s_linear_infinite]" />
             <div className="absolute inset-4 rounded-full border border-blue-500/20 animate-[spin_15s_linear_infinite_reverse]" />
 
-            {/* Profile Image Placeholder */}
+            {/* Profile Image */}
             <div className="absolute inset-8 rounded-full overflow-hidden bg-slate-800 border-2 border-slate-700">
               <Image
                 src={photo}
                 alt={name}
                 fill
-                className="object-cover opacity-80 mix-blend-luminosity hover:mix-blend-normal transition-all duration-500"
+                className="object-cover transition-all duration-500"
                 referrerPolicy="no-referrer"
               />
             </div>
