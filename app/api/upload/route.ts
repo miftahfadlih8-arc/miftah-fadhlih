@@ -18,26 +18,14 @@ export async function POST(request: Request) {
     const bytes = await file.arrayBuffer();
     const buffer = Buffer.from(bytes);
 
-    // Create unique filename
-    const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
-    const filename =
-      file.name.replace(/\.[^/.]+$/, "") +
-      "-" +
-      uniqueSuffix +
-      path.extname(file.name);
-
-    // Ensure public directory exists
-    const publicDir = path.join(process.cwd(), "public");
-    if (!existsSync(publicDir)) {
-      await mkdir(publicDir, { recursive: true });
-    }
-    const filepath = path.join(publicDir, filename);
-
-    await writeFile(filepath, buffer);
+    // Convert to base64
+    const base64 = buffer.toString("base64");
+    const mimeType = file.type || "image/jpeg";
+    const dataUrl = `data:${mimeType};base64,${base64}`;
 
     return NextResponse.json({
       success: true,
-      url: `/${filename}`,
+      url: dataUrl,
     });
   } catch (error) {
     console.error("Error uploading file:", error);
