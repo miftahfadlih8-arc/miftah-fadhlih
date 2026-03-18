@@ -1,17 +1,23 @@
 import { NextResponse } from "next/server";
-import { readData } from "@/app/lib/data";
+import { db } from "@/app/lib/firebase";
+import { doc, getDoc, getDocs, collection, query, limit } from "firebase/firestore";
 
 export async function GET() {
-  const data = readData();
+  try {
+    const [profileSnap, projectsSnap, messagesSnap] = await Promise.all([
+      getDoc(doc(db, "profile", "current")),
+      getDocs(collection(db, "projects")),
+      getDocs(collection(db, "messages"))
+    ]);
 
-  if (!data) {
+    return NextResponse.json({
+      visitors: 1234, // Mock for now
+      projects: projectsSnap.size,
+      messages: messagesSnap.size,
+      profile: profileSnap.exists() ? profileSnap.data() : {},
+    });
+  } catch (error) {
+    console.error("Error fetching dashboard data:", error);
     return NextResponse.json({ error: "Failed to load data" }, { status: 500 });
   }
-
-  return NextResponse.json({
-    visitors: 1234, // Mock for now, could integrate with real analytics
-    projects: data.projects?.length || 0,
-    messages: data.messages?.length || 0,
-    profile: data.profile,
-  });
 }

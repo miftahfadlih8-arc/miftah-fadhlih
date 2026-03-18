@@ -1,10 +1,16 @@
 import { NextResponse } from "next/server";
-import { readData } from "@/app/lib/data";
+import { db } from "@/app/lib/firebase";
+import { collection, getDocs, query, orderBy } from "firebase/firestore";
 
 export async function GET() {
   try {
-    const data = await readData();
-    return NextResponse.json(data.messages || []);
+    const q = query(collection(db, "messages"), orderBy("date", "desc"));
+    const querySnapshot = await getDocs(q);
+    const messages = querySnapshot.docs.map(doc => ({
+      ...doc.data(),
+      id: doc.id
+    }));
+    return NextResponse.json(messages);
   } catch (error) {
     return NextResponse.json(
       { error: "Failed to fetch messages" },

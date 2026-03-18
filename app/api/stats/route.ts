@@ -1,35 +1,28 @@
 import { NextResponse } from "next/server";
-import { readData, writeData } from "@/app/lib/data";
+import { db } from "@/app/lib/firebase";
+import { doc, getDoc, setDoc } from "firebase/firestore";
 
 export async function GET() {
-  const data = readData();
-  if (!data)
+  try {
+    const docRef = doc(db, "stats", "current");
+    const docSnap = await getDoc(docRef);
+    if (docSnap.exists()) {
+      return NextResponse.json(docSnap.data());
+    } else {
+      return NextResponse.json({ error: "Stats not found" }, { status: 404 });
+    }
+  } catch (error) {
     return NextResponse.json({ error: "Failed to load data" }, { status: 500 });
-  return NextResponse.json(data.stats);
+  }
 }
 
 export async function PUT(request: Request) {
   try {
     const statsUpdates = await request.json();
-    const data = readData();
-
-    if (!data)
-      return NextResponse.json(
-        { error: "Failed to load data" },
-        { status: 500 },
-      );
-
-    data.stats = { ...data.stats, ...statsUpdates };
-
-    if (writeData(data)) {
-      return NextResponse.json({ success: true, stats: data.stats });
-    } else {
-      return NextResponse.json(
-        { error: "Failed to save data" },
-        { status: 500 },
-      );
-    }
+    const docRef = doc(db, "stats", "current");
+    await setDoc(docRef, statsUpdates, { merge: true });
+    return NextResponse.json({ success: true });
   } catch (error) {
-    return NextResponse.json({ error: "Invalid request" }, { status: 400 });
+    return NextResponse.json({ error: "Failed to save data" }, { status: 500 });
   }
 }

@@ -12,20 +12,33 @@ import Contact from "./sections/Contact";
 import ChatWidget from "./components/ChatWidget";
 import { useVisitorTracker } from "./hooks/useVisitorTracker";
 
-import data from "../data.json";
-
 export default function Home() {
   useVisitorTracker();
-  const [siteData, setSiteData] = useState<any>(data);
+  const [siteData, setSiteData] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetch("/api/public-data")
       .then((res) => res.json())
-      .then(setSiteData)
-      .catch(console.error);
+      .then((data) => {
+        setSiteData(data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error(err);
+        setLoading(false);
+      });
   }, []);
 
-  if (!siteData) return null; // Should not happen now with initial state
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-slate-900 flex items-center justify-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+      </div>
+    );
+  }
+
+  if (!siteData) return null;
 
   return (
     <main className="min-h-screen bg-slate-900 text-slate-300 font-sans selection:bg-blue-500/30 selection:text-blue-200">
@@ -43,7 +56,7 @@ export default function Home() {
         <Experience experiences={siteData.experiences} />
         <Projects projects={siteData.projects} />
         <Skills skills={siteData.skills} />
-        <Education />
+        <Education education={siteData.education} certifications={siteData.certifications} />
         <Contact profile={siteData.profile} />
       </div>
 

@@ -1,24 +1,22 @@
 import { NextResponse } from "next/server";
 import { sendTelegramMessage } from "@/app/lib/telegram";
-import { readData, writeData } from "@/app/lib/data";
+import { db } from "@/app/lib/firebase";
+import { collection, addDoc } from "firebase/firestore";
 
 export async function POST(req: Request) {
   try {
     const data = await req.json();
     const { name, email, subject, message } = data;
 
-    // Save to data.json
-    const dbData = await readData();
+    // Save to Firestore
     const newMessage = {
-      id: Date.now().toString(),
       name,
       email,
       subject,
       message,
       date: new Date().toISOString(),
     };
-    dbData.messages = [newMessage, ...(dbData.messages || [])];
-    await writeData(dbData);
+    await addDoc(collection(db, "messages"), newMessage);
 
     const telegramMessage = `
 📩 <b>New Message from Portfolio!</b>

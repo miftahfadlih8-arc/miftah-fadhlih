@@ -1,0 +1,177 @@
+{
+  "entities": {
+    "Profile": {
+      "title": "Profile",
+      "description": "User profile information",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "title": { "type": "string" },
+        "summary": { "type": "string" },
+        "location": { "type": "string" },
+        "email": { "type": "string" },
+        "phone": { "type": "string" },
+        "photo": { "type": "string" },
+        "social": {
+          "type": "object",
+          "properties": {
+            "linkedin": { "type": "string" },
+            "github": { "type": "string" },
+            "telegram": { "type": "string" }
+          }
+        }
+      },
+      "required": ["name", "title"]
+    },
+    "Experience": {
+      "title": "Experience",
+      "description": "Work experience entry",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "company": { "type": "string" },
+        "role": { "type": "string" },
+        "startDate": { "type": "string" },
+        "endDate": { "type": "string" },
+        "current": { "type": "boolean" },
+        "description": { "type": "array", "items": { "type": "string" } },
+        "achievements": { "type": "array", "items": { "type": "string" } }
+      },
+      "required": ["company", "role"]
+    },
+    "Project": {
+      "title": "Project",
+      "description": "Portfolio project",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "role": { "type": "string" },
+        "description": { "type": "string" },
+        "techStack": { "type": "array", "items": { "type": "string" } },
+        "thumbnail": { "type": "string" },
+        "liveUrl": { "type": "string" },
+        "githubUrl": { "type": "string" },
+        "featured": { "type": "boolean" }
+      },
+      "required": ["name"]
+    },
+    "Stats": {
+      "title": "Stats",
+      "description": "Application statistics",
+      "type": "object",
+      "properties": {
+        "activeUsers": { "type": "number" },
+        "revenueGrowth": { "type": "number" },
+        "userEngagement": { "type": "number" },
+        "backlogReduction": { "type": "number" },
+        "usabilityScore": { "type": "number" }
+      }
+    },
+    "SkillCategory": {
+      "title": "Skill Category",
+      "description": "A category of skills",
+      "type": "object",
+      "properties": {
+        "category": { "type": "string" },
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": { "type": "string" },
+              "level": { "type": "number" }
+            }
+          }
+        }
+      }
+    },
+    "Message": {
+      "title": "Message",
+      "description": "Contact form message",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "email": { "type": "string" },
+        "subject": { "type": "string" },
+        "message": { "type": "string" },
+        "date": { "type": "string" }
+      }
+    },
+    "Education": {
+      "title": "Education",
+      "description": "Educational background",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "degree": { "type": "string" },
+        "institution": { "type": "string" },
+        "year": { "type": "string" }
+      },
+      "required": ["degree", "institution", "year"]
+    },
+    "Certification": {
+      "title": "Certification",
+      "description": "Professional certification",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "issuer": { "type": "string" }
+      },
+      "required": ["name", "issuer"]
+    },
+    "Settings": {
+      "title": "Settings",
+      "description": "Application settings",
+      "type": "object",
+      "properties": {
+        "siteTitle": { "type": "string" },
+        "metaDescription": { "type": "string" },
+        "primaryColor": { "type": "string" },
+        "telegramBotToken": { "type": "string" },
+        "telegramChatId": { "type": "string" },
+        "geminiApiKey": { "type": "string" }
+      }
+    }
+  },
+  "firestore": {
+    "profile": {
+      "schema": "Profile",
+      "description": "Single document for profile"
+    },
+    "experiences": {
+      "schema": "Experience",
+      "description": "Collection of work experiences"
+    },
+    "projects": {
+      "schema": "Project",
+      "description": "Collection of projects"
+    },
+    "stats": {
+      "schema": "Stats",
+      "description": "Single document for stats"
+    },
+    "skills": {
+      "schema": "SkillCategory",
+      "description": "Collection of skill categories"
+    },
+    "education": {
+      "schema": "Education",
+      "description": "Educational background"
+    },
+    "certifications": {
+      "schema": "Certification",
+      "description": "Professional certifications"
+    },
+    "messages": {
+      "schema": "Message",
+      "description": "Collection of contact messages"
+    },
+    "settings": {
+      "schema": "Settings",
+      "description": "Single document for settings"
+    }
+  }
+}

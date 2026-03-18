@@ -2,7 +2,8 @@ import { NextResponse } from "next/server";
 import { GoogleGenAI } from "@google/genai";
 import { MIFTAH_CV_PROMPT } from "@/app/lib/ai-agent";
 import { sendTelegramMessage } from "@/app/lib/telegram";
-import { readData } from "@/app/lib/data";
+import { db } from "@/app/lib/firebase";
+import { doc, getDoc } from "firebase/firestore";
 
 export async function POST(req: Request) {
   try {
@@ -15,9 +16,10 @@ export async function POST(req: Request) {
       );
     }
 
-    // Get API Key from data.json or environment
-    const data = await readData();
-    const geminiKey = data.settings?.geminiApiKey || process.env.NEXT_PUBLIC_GEMINI_API_KEY;
+    // Get API Key from Firestore or environment
+    const settingsSnap = await getDoc(doc(db, "settings", "current"));
+    const settings = settingsSnap.exists() ? settingsSnap.data() : {};
+    const geminiKey = settings.geminiApiKey || process.env.NEXT_PUBLIC_GEMINI_API_KEY;
 
     if (!geminiKey) {
       console.error("Gemini API Key not configured.");

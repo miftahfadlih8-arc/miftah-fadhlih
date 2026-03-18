@@ -1,10 +1,15 @@
 import { NextResponse } from "next/server";
-import { readData, writeData } from "@/app/lib/data";
+import { db } from "@/app/lib/firebase";
+import { collection, getDocs, setDoc, doc } from "firebase/firestore";
 
 export async function GET() {
   try {
-    const data = await readData();
-    return NextResponse.json(data.skills || []);
+    const querySnapshot = await getDocs(collection(db, "skills"));
+    const skills = querySnapshot.docs.map(doc => ({
+      ...doc.data(),
+      id: doc.id
+    }));
+    return NextResponse.json(skills);
   } catch (error) {
     return NextResponse.json(
       { error: "Failed to fetch skills" },
@@ -17,22 +22,19 @@ export async function PUT(request: Request) {
   try {
     const skills = await request.json();
 
-    // Ensure skills is an array of strings
-    const formattedSkills = skills.map((skillCat: any) => ({
-      ...skillCat,
-      skills: Array.isArray(skillCat.skills)
-        ? skillCat.skills
-        : typeof skillCat.skills === "string"
+    for (const skillCat of skills) {
+      const id = skillCat.category.replace(/\s+/g, '-').toLowerCase();
+      const items = Array.isArray(skillCat.items)
+        ? skillCat.items
+        : Array.isArray(skillCat.skills) // Fallback for old field name
           ? skillCat.skills
-              .split(",")
-              .map((s: string) => s.trim())
-              .filter(Boolean)
-          : [],
-    }));
+          : [];
 
-    const data = await readData();
-    data.skills = formattedSkills;
-    await writeData(data);
+      await setDoc(doc(db, "skills", id), { 
+        category: skillCat.category,
+        items 
+      });
+    }
 
     return NextResponse.json({ success: true });
   } catch (error) {

@@ -1,10 +1,15 @@
 import { NextResponse } from "next/server";
-import { readData, writeData } from "@/app/lib/data";
+import { db } from "@/app/lib/firebase";
+import { collection, getDocs, setDoc, doc } from "firebase/firestore";
 
 export async function GET() {
   try {
-    const data = await readData();
-    return NextResponse.json(data.experiences || []);
+    const querySnapshot = await getDocs(collection(db, "experiences"));
+    const experiences = querySnapshot.docs.map(doc => ({
+      ...doc.data(),
+      id: doc.id
+    }));
+    return NextResponse.json(experiences);
   } catch (error) {
     return NextResponse.json(
       { error: "Failed to fetch experiences" },
@@ -17,19 +22,20 @@ export async function PUT(request: Request) {
   try {
     const experiences = await request.json();
 
-    // Ensure desc is an array of strings
-    const formattedExperiences = experiences.map((exp: any) => ({
-      ...exp,
-      desc: Array.isArray(exp.desc)
-        ? exp.desc
-        : typeof exp.desc === "string"
-          ? exp.desc.split("\n").filter((s: string) => s.trim())
-          : [],
-    }));
+    for (const exp of experiences) {
+      const { id, ...rest } = exp;
+      const docId = id || doc(collection(db, "experiences")).id;
 
-    const data = await readData();
-    data.experiences = formattedExperiences;
-    await writeData(data);
+      const description = Array.isArray(exp.description)
+        ? exp.description
+        : Array.isArray(exp.desc) // Fallback for old field name
+          ? exp.desc
+          : typeof exp.desc === "string"
+            ? exp.desc.split("\n").map((s: string) => s.trim()).filter(Boolean)
+            : [];
+
+      await setDoc(doc(db, "experiences", docId), { ...rest, description });
+    }
 
     return NextResponse.json({ success: true });
   } catch (error) {

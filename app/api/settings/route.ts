@@ -1,10 +1,16 @@
 import { NextResponse } from "next/server";
-import { readData, writeData } from "@/app/lib/data";
+import { db } from "@/app/lib/firebase";
+import { doc, getDoc, setDoc } from "firebase/firestore";
 
 export async function GET() {
   try {
-    const data = await readData();
-    return NextResponse.json(data.settings || {});
+    const docRef = doc(db, "settings", "current");
+    const docSnap = await getDoc(docRef);
+    if (docSnap.exists()) {
+      return NextResponse.json(docSnap.data());
+    } else {
+      return NextResponse.json({});
+    }
   } catch (error) {
     return NextResponse.json(
       { error: "Failed to fetch settings" },
@@ -16,11 +22,8 @@ export async function GET() {
 export async function PUT(request: Request) {
   try {
     const settings = await request.json();
-
-    const data = await readData();
-    data.settings = settings;
-    await writeData(data);
-
+    const docRef = doc(db, "settings", "current");
+    await setDoc(docRef, settings, { merge: true });
     return NextResponse.json({ success: true });
   } catch (error) {
     return NextResponse.json(

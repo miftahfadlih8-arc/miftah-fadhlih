@@ -2,11 +2,11 @@
   "profile": {
     "name": "Miftah Fadhlih",
     "title": "Product Manager | Project Manager | AI Engineer",
-    "summary": "Product Manager with 4+ years Fintech experience, including 1 year UX Research and 3 years leading product development. Track record: +30% user engagement, +25% revenue, 10,000+ app downloads in first month. Currently expanding as AI Engineer, developing AI-powered solutions using Google AI Studio and modern web technologies. Expert in Agile methodologies, cross-functional leadership, and data-driven decision making.",
+    "summary": "Product Manager with 4+ years of Fintech experience, specializing in UX Research and product development leadership. Proven track record of driving +30% user engagement, +25% revenue growth, and 10,000+ app downloads in the first month. Currently pivoting into AI Engineering, building intelligent solutions with Google AI Studio and modern LLM frameworks. Expert in Agile methodologies, cross-functional leadership, and data-driven product strategy.",
     "location": "Rawalumbu, Bekasi, Indonesia",
     "email": "miftahfadlih8@gmail.com",
     "phone": "+6287778088578",
-    "photo": "/profile-photo.jpg",
+    "photo": "https://drive.google.com/uc?export=view&id=1SDhttzzC5DuUcL25myGm6FvJfAJV37Fa",
     "social": {
       "linkedin": "https://linkedin.com/in/miftahfadhlih",
       "github": "https://github.com/miftahfadhlih",
@@ -85,7 +85,12 @@
       "name": "QB POS",
       "role": "AI Engineer & Full-Stack Developer",
       "description": "Comprehensive POS system with sales tracking, inventory management, and multi-outlet support.",
-      "techStack": ["React", "Node.js", "AI", "PostgreSQL"],
+      "techStack": [
+        "React",
+        "Node.js",
+        "AI",
+        "PostgreSQL"
+      ],
       "thumbnail": "https://picsum.photos/seed/qbpos/800/600",
       "liveUrl": "https://www.pos234.biz.id",
       "githubUrl": "https://github.com",
@@ -96,7 +101,12 @@
       "name": "AI-Powered Web Applications",
       "role": "AI Engineer",
       "description": "Intelligent applications using Google AI Studio for enhanced UX and business automation.",
-      "techStack": ["Google AI Studio", "LLM", "Next.js", "Tailwind CSS"],
+      "techStack": [
+        "Google AI Studio",
+        "LLM",
+        "Next.js",
+        "Tailwind CSS"
+      ],
       "thumbnail": "https://picsum.photos/seed/aiweb/800/600",
       "liveUrl": "https://anakhebad26-stack-s-org-git-main-anakhebad-stores-projects.vercel.app",
       "githubUrl": "https://github.com",
@@ -107,7 +117,12 @@
       "name": "SPARC.HR / Muscle First",
       "role": "Full Stack Developer",
       "description": "10-module HR system (Dashboard, Absensi, Payroll, Recruitment, KPI, AI Agent, etc).",
-      "techStack": ["React", "TypeScript", "Tailwind CSS", "Node.js"],
+      "techStack": [
+        "React",
+        "TypeScript",
+        "Tailwind CSS",
+        "Node.js"
+      ],
       "thumbnail": "https://picsum.photos/seed/hr/800/600",
       "liveUrl": "#",
       "githubUrl": "#",
@@ -117,7 +132,7 @@
   "stats": {
     "activeUsers": 40,
     "revenueGrowth": 25,
-    "userEngagement": 30,
+    "userEngagement": 20,
     "backlogReduction": 30,
     "usabilityScore": 35
   },
@@ -137,6 +152,7 @@
       "items": [
         { "name": "Scrum", "level": 95 },
         { "name": "Kanban", "level": 90 },
+        { "name": "Cross-functional Collaboration", "level": 90 },
         { "name": "Sprint Planning", "level": 90 }
       ]
     },
@@ -154,20 +170,32 @@
       "items": [
         { "name": "Figma", "level": 85 },
         { "name": "User Research", "level": 90 },
-        { "name": "Data Analysis", "level": 80 }
+        { "name": "Data Analysis", "level": 80 },
+        { "name": "Problem-solving", "level": 90 }
       ]
     }
   ],
-  "messages": [
+  "education": [
     {
-      "id": "1773790340472",
-      "name": "JKN",
-      "email": "miftahfadlih8@gmail.com",
-      "subject": "SDKFNS",
-      "message": "SKNFKLSD",
-      "date": "2026-03-17T23:32:20.472Z"
+      "id": "1",
+      "degree": "Bachelor's Degree in Computer Science/Informatics",
+      "institution": "Universitas Bhayangkara",
+      "year": "2020"
     }
   ],
+  "certifications": [
+    {
+      "id": "1",
+      "name": "UI/UX Researcher Certification",
+      "issuer": "Binar Academy"
+    },
+    {
+      "id": "2",
+      "name": "Product Development Community",
+      "issuer": "Tech in Asia"
+    }
+  ],
+  "messages": [],
   "settings": {
     "siteTitle": "Miftah Fadhlih - Portfolio",
     "metaDescription": "Portfolio of Miftah Fadhlih",
