@@ -6,7 +6,7 @@
     "location": "Rawalumbu, Bekasi, Indonesia",
     "email": "miftahfadlih8@gmail.com",
     "phone": "+6287778088578",
-    "photo": "/foto miftah-1773789231004-82372544.jpg",
+    "photo": "/profile-photo.jpg",
     "social": {
       "linkedin": "https://linkedin.com/in/miftahfadhlih",
       "github": "https://github.com/miftahfadhlih",
@@ -85,12 +85,7 @@
       "name": "QB POS",
       "role": "AI Engineer & Full-Stack Developer",
       "description": "Comprehensive POS system with sales tracking, inventory management, and multi-outlet support.",
-      "techStack": [
-        "React",
-        "Node.js",
-        "AI",
-        "PostgreSQL"
-      ],
+      "techStack": ["React", "Node.js", "AI", "PostgreSQL"],
       "thumbnail": "https://picsum.photos/seed/qbpos/800/600",
       "liveUrl": "https://www.pos234.biz.id",
       "githubUrl": "https://github.com",
@@ -101,15 +96,21 @@
       "name": "AI-Powered Web Applications",
       "role": "AI Engineer",
       "description": "Intelligent applications using Google AI Studio for enhanced UX and business automation.",
-      "techStack": [
-        "Google AI Studio",
-        "LLM",
-        "Next.js",
-        "Tailwind CSS"
-      ],
+      "techStack": ["Google AI Studio", "LLM", "Next.js", "Tailwind CSS"],
       "thumbnail": "https://picsum.photos/seed/aiweb/800/600",
       "liveUrl": "https://anakhebad26-stack-s-org-git-main-anakhebad-stores-projects.vercel.app",
       "githubUrl": "https://github.com",
+      "featured": true
+    },
+    {
+      "id": "3",
+      "name": "SPARC.HR / Muscle First",
+      "role": "Full Stack Developer",
+      "description": "10-module HR system (Dashboard, Absensi, Payroll, Recruitment, KPI, AI Agent, etc).",
+      "techStack": ["React", "TypeScript", "Tailwind CSS", "Node.js"],
+      "thumbnail": "https://picsum.photos/seed/hr/800/600",
+      "liveUrl": "#",
+      "githubUrl": "#",
       "featured": true
     }
   ],
@@ -173,6 +174,6 @@
     "primaryColor": "#3b82f6",
     "telegramBotToken": "",
     "telegramChatId": "",
-    "geminiApiKey": "AIzaSyAmtPhH0MmKid5jguNJ4rB4c0NX1gD6Dh8"
+    "geminiApiKey": ""
   }
 }

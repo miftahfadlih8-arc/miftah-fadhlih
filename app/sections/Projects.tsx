@@ -2,6 +2,7 @@
 
 import { motion } from "motion/react";
 import { ExternalLink, Github, Code2 } from "lucide-react";
+import Image from "next/image";
 
 const projects = [
   {
@@ -11,6 +12,7 @@ const projects = [
     tech: ["React", "Node.js", "PostgreSQL", "Tailwind CSS"],
     link: "#",
     github: "#",
+    thumbnail: "https://picsum.photos/seed/qbpos/800/600",
     color: "from-blue-500/10 to-transparent",
   },
   {
@@ -20,6 +22,7 @@ const projects = [
     tech: ["Google AI Studio", "LLM", "Next.js", "TypeScript"],
     link: "#",
     github: "#",
+    thumbnail: "https://picsum.photos/seed/aiweb/800/600",
     color: "from-cyan-500/10 to-transparent",
   },
   {
@@ -29,6 +32,7 @@ const projects = [
     tech: ["React", "TypeScript", "Tailwind CSS", "Node.js"],
     link: "#",
     github: "#",
+    thumbnail: "https://picsum.photos/seed/hr/800/600",
     color: "from-amber-500/10 to-transparent",
   },
 ];
@@ -61,6 +65,7 @@ export default function Projects({
             const tech = project.tech || project.techStack || [];
             const link = project.link || project.liveUrl || "#";
             const github = project.github || project.githubUrl || "#";
+            const thumbnail = project.thumbnail;
             const color = project.color || "from-blue-500/10 to-transparent";
 
             return (
@@ -70,13 +75,26 @@ export default function Projects({
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="group relative flex flex-col justify-between rounded-2xl bg-slate-800/40 border border-slate-700/50 p-6 hover:bg-slate-800/80 transition-all duration-300 overflow-hidden"
+                className="group relative flex flex-col justify-between rounded-2xl bg-slate-800/40 border border-slate-700/50 hover:bg-slate-800/80 transition-all duration-300 overflow-hidden"
               >
                 <div
                   className={`absolute inset-0 bg-gradient-to-br ${color} opacity-0 group-hover:opacity-100 transition-opacity duration-500`}
                 />
 
-                <div className="relative z-10 flex-1">
+                {thumbnail && (
+                  <div className="relative h-48 w-full overflow-hidden">
+                    <Image
+                      src={thumbnail}
+                      alt={title}
+                      fill
+                      className="object-cover transition-transform duration-500 group-hover:scale-110"
+                      referrerPolicy="no-referrer"
+                    />
+                    <div className="absolute inset-0 bg-slate-900/20 group-hover:bg-transparent transition-colors duration-500" />
+                  </div>
+                )}
+
+                <div className="relative z-10 p-6 flex-1">
                   <div className="flex justify-between items-start mb-4">
                     <div className="p-2.5 rounded-lg bg-slate-900/50 border border-slate-700/50 text-blue-400">
                       <Code2 className="w-5 h-5" />
@@ -108,7 +126,7 @@ export default function Projects({
                   </p>
                 </div>
 
-                <div className="relative z-10 flex flex-wrap gap-2 mt-auto pt-4 border-t border-slate-700/50">
+                <div className="relative z-10 p-6 flex flex-wrap gap-2 mt-auto pt-4 border-t border-slate-700/50">
                   {tech.map((techItem: string, i: number) => (
                     <span
                       key={i}

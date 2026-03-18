@@ -15,6 +15,7 @@ const projectSchema = z.object({
       tech: z.union([z.string(), z.array(z.string())]),
       link: z.string(),
       github: z.string(),
+      thumbnail: z.string().optional(),
       color: z.string().min(1, "Color is required"),
     }),
   ),
@@ -178,6 +179,16 @@ export default function ProjectsPage() {
               </div>
               <div className="space-y-2 md:col-span-2">
                 <label className="text-sm font-medium text-slate-300">
+                  Thumbnail URL
+                </label>
+                <input
+                  {...register(`projects.${index}.thumbnail`)}
+                  className="w-full px-4 py-2 bg-slate-900 border border-slate-700 rounded-lg text-white focus:ring-2 focus:ring-blue-500"
+                  placeholder="https://example.com/image.jpg"
+                />
+              </div>
+              <div className="space-y-2 md:col-span-2">
+                <label className="text-sm font-medium text-slate-300">
                   Description
                 </label>
                 <textarea
@@ -224,6 +235,7 @@ export default function ProjectsPage() {
               tech: [],
               link: "#",
               github: "#",
+              thumbnail: "",
               color: "from-blue-500/10 to-transparent",
             })
           }

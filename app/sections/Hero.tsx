@@ -11,7 +11,7 @@ export default function Hero({ profile }: { profile?: any }) {
   const location = profile?.location || "Rawalumbu, Bekasi, Indonesia";
   const email = profile?.email || "miftahfadlih8@gmail.com";
   const phone = profile?.phone || "+6287778088578";
-  const photo = profile?.photo || "/foto miftah-1773789231004-82372544.jpg";
+  const photo = profile?.photo || "/profile-photo.jpg";
   const linkedin = profile?.social?.linkedin || "https://linkedin.com/in/miftahfadhlih";
   const github = profile?.social?.github || "https://github.com/miftahfadhlih";
   const pitch = profile?.pitch || "Bridging the gap between business strategy and AI technology to build scalable, user-centric products that drive measurable impact.";

@@ -3,7 +3,7 @@ import { SignJWT } from "jose";
 
 const JWT_SECRET =
   process.env.JWT_SECRET || "your-super-secret-jwt-key-change-this";
-const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || "admin123";
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || "MasukDashboard234";
 
 export async function POST(request: Request) {
   try {
